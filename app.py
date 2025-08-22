@@ -11,8 +11,9 @@ OUTPUT_BUCKET = "bbox-frames-1"
 
 
 # Load YOLO models once at cold start
-model_product = YOLO("product_best.pt")
-model_price = YOLO("pricetag_best.pt")
+model_product = YOLO("/var/task/models/product_best.pt")
+model_price = YOLO("/var/task/models/pricetag_best.pt")
+
 
 def draw_boxes(img, results, label_name):
     for box in results.boxes:
