@@ -14,7 +14,7 @@ OUTPUT_BUCKET = "bbox-frames-1"
 MODEL_BUCKET = "model-bucket-22"
 
 # Models paths inside Lambda
-MODELS_DIR = "/var/task/models"
+MODELS_DIR = "/tmp/models"  # /tmp is writable
 os.makedirs(MODELS_DIR, exist_ok=True)
 
 PRODUCT_MODEL_PATH = os.path.join(MODELS_DIR, "product_best.pt")
