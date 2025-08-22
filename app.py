@@ -7,6 +7,8 @@ import os
 import re
 
 s3 = boto3.client("s3")
+OUTPUT_BUCKET = "bbox-frames-1"
+
 
 # Load YOLO models once at cold start
 model_product = YOLO("product_best.pt")
@@ -64,7 +66,7 @@ def handler(event, context):
 
     # Upload annotated image to folder named after video
     output_key = f"{video_name}/{filename}"
-    s3.upload_file(tmp_out.name, bucket, output_key)
+    s3.upload_file(tmp_out.name, OUTPUT_BUCKET, output_key)
 
     return {
         "statusCode": 200,
