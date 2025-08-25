@@ -36,19 +36,15 @@ model_price = YOLO(PRICE_MODEL_PATH)
 def draw_boxes(img, results, label_name):
     for box in results.boxes:
         x1, y1, x2, y2 = map(int, box.xyxy[0])
-        conf = float(box.conf[0])
+
+        # Green for Product, Red for PriceTag
         color = (0, 255, 0) if label_name == "Product" else (0, 0, 255)
-        cv2.rectangle(img, (x1, y1), (x2, y2), color, 2)
-        cv2.putText(
-            img,
-            f"{label_name} {conf:.2f}",
-            (x1, y1 - 10),
-            cv2.FONT_HERSHEY_SIMPLEX,
-            0.6,
-            color,
-            2
-        )
+
+        # Thicker bounding box only
+        cv2.rectangle(img, (x1, y1), (x2, y2), color, 4)
+
     return img
+
 
 
 def extract_video_name(filename: str) -> str:
